@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Hotels({ handleSlug }) {
+function Hotels() {
     const [hotels, setHotels] = useState([]);
     const navigate = useNavigate();
 
@@ -14,8 +14,7 @@ function Hotels({ handleSlug }) {
     }, [])
 
     const handleHotelDetails = (id, slug) => {
-        handleSlug(slug);
-        navigate(`/hotelInfo/${id}`);
+        navigate(`/hotelInfo/${id}?slug=${slug}`);
     }
 
     return (
@@ -28,7 +27,7 @@ function Hotels({ handleSlug }) {
                                 <img src={hotel.thumbnail} alt={hotel.slug} />
                                 <div className='details'>
                                     <li>{hotel.address}</li>
-                                    <p>$ {hotel.pricePerNight} night</p>
+                                    <p>${hotel.pricePerNight} night</p>
                                 </div>
                             </div>
 

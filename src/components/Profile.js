@@ -6,7 +6,6 @@ import { db } from '../firebase';
 function Profile({ user }) {
     const [bookings, setBookings] = useState([]);
     useEffect(() => {
-        console.log(user)
         const fetchBookings = async () => {
             await getDocs(query(
                 collection(db, "bookings"),
@@ -16,7 +15,6 @@ function Profile({ user }) {
                     const newData = querySnapshot.docs
                         .map((doc) => ({ ...doc.data(), id: doc.id }));
                     setBookings(newData);
-                    console.log(newData)
                 })
         }
         fetchBookings();

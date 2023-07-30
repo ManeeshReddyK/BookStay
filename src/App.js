@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { collection, addDoc } from "firebase/firestore";
 
 import './App.css';
 import Login from './components/Login';
@@ -9,7 +8,6 @@ import Hotel from './components/Hotel';
 import ResponsiveAppBar from './components/AppBar';
 import Profile from './components/Profile';
 import NotFound from './components/NotFound';
-import { db } from './firebase';
 
 function App() {
 
@@ -18,18 +16,6 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function addBooking() {
-      console.log('here');
-      try {
-        const docRef = await addDoc(collection(db, "bookings"), {
-          name: "Aroma", address: "Gouraram", checkin: "Tue Jul 29 2023", checkout: "Mon Jul 31 2023", noofguests: 2, price: 199, email: "maneeshkurnapally24@gmail.com"
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-    }
-    // addBooking();
     let user = localStorage.getItem('user');
     if (user) {
       setUser(JSON.parse(user));
