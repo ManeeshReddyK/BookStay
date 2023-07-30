@@ -65,7 +65,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 function ResponsiveAppBar({ logout, user }) {
     const navigate = useNavigate();
-    const [page, setPage] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleOpenUserMenu = (event) => {
@@ -83,14 +82,13 @@ function ResponsiveAppBar({ logout, user }) {
     };
 
     function viewProfile() {
-        console.log(user.name)
-        setPage(true);
-
+        setAnchorElUser(null);
+        navigate('/profile')
     }
 
     return (
         <div>
-            <AppBar position="static" sx={{ padding: '16px 32px' }}>
+            <AppBar position="static" sx={{ padding: "0 42px" }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, cursor: 'pointer' }} onClick={navigateHome}>
@@ -125,6 +123,9 @@ function ResponsiveAppBar({ logout, user }) {
                                     horizontal: 'right',
                                 }}
                                 open={Boolean(anchorElUser)}
+                                onClose={() => {
+                                    setAnchorElUser(null);
+                                }}
                             >
                                 {settings.map((setting) => (
                                     <MenuItem key={setting} onClick={setting == 'Logout' ? handleCloseUserMenu : viewProfile}>

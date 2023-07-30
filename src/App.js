@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Hotels from './components/Hotels';
 import Hotel from './components/Hotel';
 import ResponsiveAppBar from './components/AppBar';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -25,12 +26,14 @@ function App() {
 
     <div className='app'>
       {user && <ResponsiveAppBar user={user} logout={handleLogout} />}
-      <Routes>
-        <Route path='/' element={<Login setUser={setUser} />} />
-        <Route path='/home' element={<Hotels user={user} handleSlug={handleSlug} />} />
-        <Route path='/hotelInfo/:id' element={<Hotel user={user} slug={slug} />} />
-        <Route path='/profile' element={<Hotel user={user} slug={slug} />} />
-      </Routes>
+      <div className='main-container'>
+        <Routes>
+          <Route path='/' element={<Login setUser={setUser} />} />
+          <Route path='/home' element={<Hotels user={user} handleSlug={handleSlug} />} />
+          <Route path='/hotelInfo/:id' element={<Hotel user={user} slug={slug} />} />
+          <Route path='/profile' element={<Profile user={user} />} />
+        </Routes>
+      </div>
     </div>
   );
 }
