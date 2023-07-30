@@ -52,6 +52,19 @@
   margin-bottom: 1rem;
 }
 
+.images-container{
+  margin-top: 1rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.images-container > img{
+  width: 350px;
+  height: 550px;
+  flex: 1;
+}
 
 table {
   border: 1px solid #D6EEEE;
@@ -68,4 +81,9 @@ th, td {
 
 tr:hover {
   background-color: #D6EEEE;
+}
+
+.dark-theme{
+  background: #444 !important;
+  color: #fff !important;
 }

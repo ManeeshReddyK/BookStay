@@ -14,7 +14,7 @@ function Hotels({ handleSlug }) {
     }, [])
 
     const handleHotelDetails = (id, slug) => {
-        handleSlug(slug)
+        handleSlug(slug);
         navigate(`/hotelInfo/${id}`);
     }
 
