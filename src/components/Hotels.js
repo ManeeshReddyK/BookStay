@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ResponsiveAppBar from './AppBar';
 
-function Hotels({ user, handleSlug }) {
+function Hotels({ handleSlug }) {
     const [hotels, setHotels] = useState([]);
     const navigate = useNavigate();
 

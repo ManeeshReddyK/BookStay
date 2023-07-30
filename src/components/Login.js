@@ -11,13 +11,11 @@ function Login({ setUser }) {
     const responseGoogle = (response) => {
         const userObject = jwt_decode(response.credential);
         localStorage.setItem('user', JSON.stringify(userObject));
-        const { name, sub, picture } = userObject;
         setUser(prev => {
             return {
                 ...prev,
-                name,
-                sub,
-                picture
+                ...userObject
+
             }
         })
         navigate("/home")

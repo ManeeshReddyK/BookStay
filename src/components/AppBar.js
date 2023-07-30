@@ -99,7 +99,7 @@ function ResponsiveAppBar({ logout, user }) {
                                 control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
                             />
                         </Box>
-                        <Box onClick={navigateHome} sx={{ paddingRight: "2rem" }}>
+                        <Box onClick={navigateHome} sx={{ paddingRight: "2rem", cursor: 'pointer' }}>
                             Home
                         </Box>
                         <Box sx={{ flexGrow: 0 }}>

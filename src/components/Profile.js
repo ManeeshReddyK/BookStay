@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from '../firebase';
 
 function Profile({ user }) {
-    const data = [{ name: "Aroma", address: "Gouraram", checkin: "Tue Jul 29 2023", checkout: "Mon Jul 31 2023", noofguests: 2, price: 199 }, { name: "7 Hills", address: "Gouraram", checkin: "Tue Jul 29 2023", checkout: "Mon Jul 31 2023", noofguests: 2, price: 199 }]
+    const [bookings, setBookings] = useState([]);
+    useEffect(() => {
+        console.log(user)
+        const fetchBookings = async () => {
+            await getDocs(query(
+                collection(db, "bookings"),
+                where("email", "==", user?.email)
+            ))
+                .then((querySnapshot) => {
+                    const newData = querySnapshot.docs
+                        .map((doc) => ({ ...doc.data(), id: doc.id }));
+                    setBookings(newData);
+                    console.log(newData)
+                })
+        }
+        fetchBookings();
+    }, [])
+
     return (
         <div>
             <div className='profile'>
@@ -20,9 +39,9 @@ function Profile({ user }) {
                     <th>Price</th>
                 </tr>
 
-                {data.map(obj => {
+                {bookings.map(obj => {
                     return (
-                        <tr>
+                        <tr key={obj.id}>
                             <td className='tname'>{obj.name}</td>
                             <td>{obj.address}</td>
                             <td>{obj.checkin}</td>
